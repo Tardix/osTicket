@@ -1,0 +1,37 @@
+version: "3"
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./.docker/nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./:/app
+    links:
+      - php
+  php:
+    build:
+      context: .
+      dockerfile: ./.docker/php.Dockerfile
+    volumes:
+      - ./:/app
+  mysql:
+    image: mariadb:latest
+    #restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: dialexy
+      MYSQL_DATABASE: dialexy
+      MYSQL_USER: dialexy
+      MYSQL_PASSWORD: dialexy
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    platform: linux/amd64
+    ports:
+      - "1080:1080"
+volumes:
+  mysql: {}
