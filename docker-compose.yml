@@ -19,10 +19,10 @@ services:
     image: mariadb:latest
     #restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: dialexy
-      MYSQL_DATABASE: dialexy
-      MYSQL_USER: dialexy
-      MYSQL_PASSWORD: dialexy
+      MYSQL_ROOT_PASSWORD: osticket
+      MYSQL_DATABASE: osticket
+      MYSQL_USER: osticket
+      MYSQL_PASSWORD: osticket
     volumes:
       - mysql:/var/lib/mysql
     ports:
